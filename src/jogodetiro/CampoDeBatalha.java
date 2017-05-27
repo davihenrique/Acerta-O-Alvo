@@ -4,13 +4,12 @@ package jogodetiro;
 import java.util.Random;
 
 public class CampoDeBatalha {
-     int x; int y;
+     int tam;
      int ax; int ay;
      
 
-    public CampoDeBatalha(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public CampoDeBatalha(int tam) {
+        this.tam = tam;
         randomalvo();
         
         
@@ -20,15 +19,16 @@ public class CampoDeBatalha {
     
         Random num = new Random();
         
-        ax = num.nextInt(x)+1;
+        ax = -1*tam + num.nextInt(tam+tam)+1;
        
         num = new Random();
         
-        ay = num.nextInt(y)+1;
+        ay = -1*tam + num.nextInt(tam+tam)+1;
         
         System.out.println(ax+" "+ay);
-    
-    
+        
+        
+
 }
      
      
