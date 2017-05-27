@@ -5,6 +5,8 @@
  */
 package jogodetiro;
 
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -13,16 +15,18 @@ import java.util.Scanner;
  * @author davih
  */
 class TiroAoAlvo{
-    int tiros;
+    int tiros; int itiros;
     String nome;
     int tam;
     int ax; int ay;
     int px; int py;
     float pontos;
 
+
     public TiroAoAlvo(int quadrado, int tiros) {
         this.tam = quadrado;
         this.tiros = tiros;
+        this.itiros = tiros;
     }
 
     public void Joga(String nome) {
@@ -32,6 +36,7 @@ class TiroAoAlvo{
         while(this.tiros > 0){
             atirar();
             this.tiros--;
+            System.out.println("Seus pontos: "+pontos);
         }
         
         
@@ -42,6 +47,7 @@ class TiroAoAlvo{
         System.out.println("Seu alvo está no intervalo ["+(-1*tam)+","
                            + "+"+tam+"]");
         System.out.println("Você tem direito a "+tiros+" tiros");
+        
     }
     
     private void  atirar(){
@@ -51,11 +57,34 @@ class TiroAoAlvo{
         px = ler.nextInt();
         ler = new Scanner(System.in);
         py = ler.nextInt();
-        
-        System.out.println(px+" "+py);
+       
+        nota();
        
     
 }
+    
+    private void nota(){
+        float d;
+        
+        if(px == ax && py == ay ){
+            System.out.println("ACERTOU O Alvo faltando "+((tiros-itiros)+1));
+            System.out.println("VC GANHOU");
+        }else{
+            d=distancia(px,py,ax,ay);
+            if(d < 10){
+                pontos+= 100;
+            }else if(d < 30){ 
+                pontos+=50;
+            }else if (d < 50) {
+                pontos+=20;
+            }else if(d < 100){
+                pontos+=10;
+            }
+        }
+        
+        
+        
+    }
     
      private void randomalvo(){
     
@@ -69,6 +98,17 @@ class TiroAoAlvo{
         
         System.out.println(ax+" "+ay);
 }
+    
+     
+     private float distancia(int xb, int yb,int xa, int ya){
+        float d;
+        
+        d =  (float) sqrt(((int) pow((xb-xa),2))+((int) pow((yb-ya),2)));
+       
+
+        return d;
+
+     }
     
     
 }
