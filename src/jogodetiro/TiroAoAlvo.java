@@ -15,12 +15,12 @@ import java.util.Scanner;
  * @author davih
  */
 class TiroAoAlvo{
-    int tiros; int itiros;
-    String nome;
-    int tam;
-    int ax; int ay;
-    int px; int py;
-    float pontos;
+   private int tiros;private final int itiros;
+   private  String nome;
+   private final int tam;
+   private  int ax;  private int ay;
+   private int px;  private int py;
+   private  float pontos;
 
 
     public TiroAoAlvo(int quadrado, int tiros) {
@@ -67,8 +67,9 @@ class TiroAoAlvo{
         float d;
         
         if(px == ax && py == ay ){
-            System.out.println("ACERTOU O Alvo faltando "+((tiros-itiros)+1));
+            System.out.println("Arcetou O Alvo faltando "+((tiros-itiros)+1)+" tiros");
             System.out.println("VC GANHOU");
+            tiros = 0;
         }else{
             d=distancia(px,py,ax,ay);
             if(d < 10){

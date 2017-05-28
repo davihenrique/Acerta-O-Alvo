@@ -6,13 +6,9 @@ public class JogoDeTiro {
    
     public static void main(String[] args) {
        
-        TiroAoAlvo jogo = new TiroAoAlvo(100,2);
+        TiroAoAlvo jogo = new TiroAoAlvo(5,2);
         
-        jogo.Joga("João");
-        
-        
-        
-        
+        jogo.Joga("João");        
         
    
            
