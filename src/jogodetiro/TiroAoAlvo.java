@@ -35,8 +35,8 @@ class TiroAoAlvo{
         randomalvo();
         while(this.tiros > 0){
             atirar();
-            this.tiros--;
-            System.out.println("Seus pontos: "+pontos);
+            verificavitoria();
+            
         }
         
         
@@ -67,23 +67,33 @@ class TiroAoAlvo{
         float d;
         
         if(px == ax && py == ay ){
-            System.out.println("Arcetou O Alvo faltando "+((tiros-itiros)+1)+" tiros");
-            System.out.println("VC GANHOU");
-            tiros = 0;
+            
+            pontos+= 300;
         }else{
             d=distancia(px,py,ax,ay);
-            if(d < 10){
+            if(d < (tam*10)/100){
                 pontos+= 100;
-            }else if(d < 30){ 
+            }else if (d < (tam*20)/100){ 
                 pontos+=50;
-            }else if (d < 50) {
+            }else if (d < (tam*50)/100) {
                 pontos+=20;
-            }else if(d < 100){
+            }else if(d < (tam*80)/100){
                 pontos+=10;
             }
         }
-        
-        
+   
+    }
+    
+    private void verificavitoria(){
+        if(pontos >= ((itiros*90)/100)* 100){
+            System.out.println("Arcetou O Alvo faltando "+((tiros-itiros)+1)+" tiros");
+            System.out.println("VC GANHOU");
+            System.out.println("Seus pontos: "+pontos);
+            tiros = 0;
+        }else{
+            this.tiros--;
+            System.out.println("Seus pontos: "+pontos);
+        }
         
     }
     
