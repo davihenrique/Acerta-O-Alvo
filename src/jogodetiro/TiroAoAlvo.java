@@ -69,24 +69,25 @@ class TiroAoAlvo{
         }else{
             d=distancia(px,py,ax,ay);
             
-            System.out.println("PONTOS"+this.pontos);
-            if(d < (tam*10)/100){
-                pontos+= valorPontoMax/itiros;
+            System.out.println("PONTOS ANTES"+this.pontos);
+            if(d < (tam*5)/100){
+                pontos+= valorPontoMax/(itiros-1);
             }else if (d < (tam*20)/100){ 
-                pontos+=valorPontoMax/(itiros/2);
+                pontos+=valorPontoMax/(itiros*2);
             }else if (d < (tam*50)/100) {
-                pontos+=valorPontoMax/(itiros/3);
+                pontos+=valorPontoMax/(itiros*3);
             }else if(d < (tam*80)/100){
-                pontos+=valorPontoMax/(itiros/4);
+                pontos+=valorPontoMax/(itiros*4);
             }
-            System.out.println("PONTOSDEPOIS"+this.pontos);
+            System.out.println("PONTOS DEPOIS"+this.pontos);
         }
    
     }
     
     private void verificavitoria(){
         if(pontos >= valorPontoMax){
-            System.out.println("Arcetou O Alvo faltando "+((tiros-itiros)+1)+" tiros");
+            this.pontos = 100;
+            System.out.println("Arcetou O Alvo faltando "+(this.itiros - this.tdados+1)+" tiros");
             System.out.println("VC GANHOU");
             System.out.println("Seus pontos: "+pontos);
              System.out.println("Seus pontos: "+pontos);
