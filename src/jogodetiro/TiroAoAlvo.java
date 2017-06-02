@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jogodetiro;
 
 import static java.lang.Math.pow;
@@ -15,12 +10,13 @@ import java.util.Scanner;
  * @author davih
  */
 class TiroAoAlvo{
-   private int tiros;private final int itiros;
+   private int tiros;private final int itiros; private int tdados = 1;
    private  String nome;
    private final int tam;
    private  int ax;  private int ay;
    private int px;  private int py;
    private  float pontos;
+   private float valorPontoMax = 100;
 
 
     public TiroAoAlvo(int quadrado, int tiros) {
@@ -34,6 +30,7 @@ class TiroAoAlvo{
         apresentar();
         randomalvo();
         while(this.tiros > 0){
+            
             atirar();
             verificavitoria();
             
@@ -52,7 +49,7 @@ class TiroAoAlvo{
     
     private void  atirar(){
     
-        System.out.println("Tiro "+this.tiros+" - entre com o par x y: ");
+        System.out.println("Tiro "+(this.tdados++)+" - entre com o par x y: ");
         Scanner ler = new Scanner(System.in);
         px = ler.nextInt();
         ler = new Scanner(System.in);
@@ -68,27 +65,31 @@ class TiroAoAlvo{
         
         if(px == ax && py == ay ){
             
-            pontos+= 300;
+            pontos+= 100;
         }else{
             d=distancia(px,py,ax,ay);
+            
+            System.out.println("PONTOS"+this.pontos);
             if(d < (tam*10)/100){
-                pontos+= 100;
+                pontos+= valorPontoMax/itiros;
             }else if (d < (tam*20)/100){ 
-                pontos+=50;
+                pontos+=valorPontoMax/(itiros/2);
             }else if (d < (tam*50)/100) {
-                pontos+=20;
+                pontos+=valorPontoMax/(itiros/3);
             }else if(d < (tam*80)/100){
-                pontos+=10;
+                pontos+=valorPontoMax/(itiros/4);
             }
+            System.out.println("PONTOSDEPOIS"+this.pontos);
         }
    
     }
     
     private void verificavitoria(){
-        if(pontos >= ((itiros*90)/100)* 100){
+        if(pontos >= valorPontoMax){
             System.out.println("Arcetou O Alvo faltando "+((tiros-itiros)+1)+" tiros");
             System.out.println("VC GANHOU");
             System.out.println("Seus pontos: "+pontos);
+             System.out.println("Seus pontos: "+pontos);
             tiros = 0;
         }else{
             this.tiros--;
@@ -109,8 +110,6 @@ class TiroAoAlvo{
         
         System.out.println(ax+" "+ay);
 }
-    
-     
      private float distancia(int xb, int yb,int xa, int ya){
         float d;
         
