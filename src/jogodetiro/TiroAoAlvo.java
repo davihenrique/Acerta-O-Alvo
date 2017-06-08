@@ -29,14 +29,12 @@ class TiroAoAlvo{
         this.nome = nome;
         apresentar();
         randomalvo();
-        while(this.tiros > 0){
+        while(this.tiros > 0 ){
             
             atirar();
             verificavitoria();
             
         }
-        
-        
     }
     
     private void apresentar(){
@@ -49,13 +47,24 @@ class TiroAoAlvo{
     
     private void  atirar(){
     
-        System.out.println("Tiro "+(this.tdados++)+" - entre com o par x y: ");
+        
+            
+        System.out.println("Tiro "+(this.tdados)+" - entre com o par x y: ");
         Scanner ler = new Scanner(System.in);
         px = ler.nextInt();
         ler = new Scanner(System.in);
         py = ler.nextInt();
        
+        if(px <= tam && py <= tam && px >= (-1*tam) && py >= (-1*tam)){
+        tdados++;
         nota();
+        
+        }else{
+            System.out.println("Erro, Área digitada invalida, tente novamente");
+            atirar();
+        }
+        
+        
        
     
 }
@@ -120,6 +129,7 @@ class TiroAoAlvo{
         return d;
 
      }
+     
     
     
 }
