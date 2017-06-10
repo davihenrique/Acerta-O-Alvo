@@ -12,8 +12,10 @@ class TiroAoAlvo {
     private int idTiro = 1;
     private String nomeJogador;
     private final int tamCampo;
+    // alvoX e alvoY é a posição radomizado do alvo.
     private int alvoX;
     private int alvoY;
+    // pontoX e PontoY é o ponto digitado pelo usuario.
     private int pontoX;
     private int pontoY;
     private float pontos;
@@ -46,11 +48,10 @@ class TiroAoAlvo {
 
     private void Atirar() {
         System.out.println("Tiro " + (idTiro) + " - entre com o par x y: ");
-        Scanner ler = new Scanner(System.in);
-        pontoX = ler.nextInt();
-        ler = new Scanner(System.in);
-        pontoY = ler.nextInt();
-        //Verifica se o usuario digitou x e y fora do espaço permitido
+        Scanner scan = new Scanner(System.in);
+        pontoX = scan.nextInt();
+        pontoY = scan.nextInt();
+        //Verifica se o usuario digitou x e y fora do espaço permitido.
         if (pontoX <= tamCampo && 
                 pontoY <= tamCampo && 
                 pontoX >= (-1 * tamCampo) && 
@@ -79,14 +80,19 @@ class TiroAoAlvo {
             sendo a pontuação máxima.
             Caso o jogador acete em cima do alvo ele já tenha 100 
             pontos e jogo termina.
+            
             Caso o jogador acete uma distância 5% de “campo de tiro” 
             entre seu tiro e o alvo ele ganha 100/ números de tiros-1.
+            
             Caso o jogador acete uma distância 20% de “campo de tiro” 
             entre seu tiro e o alvo ele ganha 100/ números de tiros-*2.
+            
             Caso o jogador acete uma distância 50% de “campo de tiro”
             entre seu tiro e o alvo ele ganha 100/ números de tiros-*3.
+            
             Caso o jogador acete uma distância 80% de “campo de tiro” 
             entre seu tiro e o alvo ele ganha 100/ números de tiros-*4.
+            
             Assim o valor da pontuação varia e o tamanho do “campo de tiro” 
             e o número de tiros funcionam com para controlar 
             o nível de dificuldade do jogo.
@@ -100,19 +106,19 @@ class TiroAoAlvo {
             } else if (d < (tamCampo * 80) / 100) {
                 pontos += valorPontoMax / (niTiros * 4);
             }
-            //System.out.println("PONTOS DEPOIS"+pontos);
+            
         }
     }
 
     private void FimDeJogo() {
         if (pontos >= valorPontoMax) {
+            tiros = 0;
             pontos = 100;
-            System.out.println("Arcetou O Alvo faltando " + 
+            System.out.println("Você conseguiu chegar a "+pontos +" faltando"+ 
                     (niTiros - idTiro + 1) + " tiros");
-            System.out.println("VC GANHOU");
+            System.out.println("VOCÊ GANHOU");
             System.out.println("Seus pontos: " + pontos);
             System.out.println("===================================================");
-            tiros = 0;
         } else if (tiros > 1) {
             tiros--;
             System.out.println("Seus pontos: " + pontos);
@@ -131,7 +137,11 @@ class TiroAoAlvo {
                 tamCampo) + 1;
         num = new Random();
         alvoY = -1 * tamCampo + num.nextInt(tamCampo+tamCampo)+1;
+        /*
+        Comando usando durante o desenvolvimento para mostrar o alvo assim
+        que radomizado e retirado na versãofinal do jogo.*/
         System.out.println(alvoX + " " + alvoY);
+        
     }
     
     //Calcula a distancia
