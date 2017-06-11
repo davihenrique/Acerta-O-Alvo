@@ -78,7 +78,7 @@ class TiroAoAlvo {
             d = Distancia(pontoX, pontoY, alvoX, alvoY);
             /*
             A regra de pontuação é:
-            O jogador ganha o jogo se conseguir chegar a 100 pontos,
+            O jogador ganhar o jogo se conseguir obter 100 pontos,
             sendo a pontuação máxima.
             Caso o jogador acerte em cima do alvo ele ganha 100 
             pontos e o jogo termina.
@@ -95,7 +95,7 @@ class TiroAoAlvo {
             Caso o jogador acerte uma distância 80% do “campo de tiro” 
             entre seu tiro e o alvo ele ganha (100/ números de tiros-*4) pontos.
             
-            Assim, o valor da pontuação varia e o tamanho do “campo de tiro” 
+            Assim, o valor da pontuação varia, o tamanho do “campo de tiro” 
             e o número de tiros funcionam  para controlar o nível de
             dificuldade do jogo.
             */
@@ -109,7 +109,7 @@ class TiroAoAlvo {
                 pontosTiro += valorPontoMax / (niTiros * 4);
             }
         }
-        //Arredonda a pontuação
+        //Arredonda a pontuação.
         pontosTiro = Math.round(pontosTiro);
         pontos += pontosTiro;
     }
@@ -147,9 +147,9 @@ class TiroAoAlvo {
         alvoY = -1 * tamCampo + num.nextInt(tamCampo+tamCampo)+1;
         /*
         A linha de codigo usanda durante o desenvolvimento e para mostrar o
-        alvo assim que radomizado foi retirada na versãofinal do jogo foi essa:*/
+        alvo assim que radomizado foi retirada na versãofinal do jogo foi essa:
         System.out.println(alvoX + " " + alvoY);
-        
+        */
     }
     
     //Calcula a distancia.
