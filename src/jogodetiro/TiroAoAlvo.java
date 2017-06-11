@@ -19,6 +19,7 @@ class TiroAoAlvo {
     private int pontoX;
     private int pontoY;
     private float pontos;
+    float pontosTiro;
     private final float valorPontoMax = 100;
 
     public TiroAoAlvo(int quadrado, int tiros) {
@@ -66,21 +67,21 @@ class TiroAoAlvo {
 
     private void Nota() {
         float d;
-        float pontosLocais =0;
+        pontosTiro = 0;
         /*
         A pontuação maxima do jogo é 100 pontos, caso o usuario 
-        consiga essa pontuação ele ganha os 100 pontos.
+        consiga acertar o alvo ele ganha os 100 pontos.
         */
         if (pontoX == alvoX && pontoY == alvoY) {
-            pontosLocais += 100;
+            pontosTiro += 100;
         } else {
             d = Distancia(pontoX, pontoY, alvoX, alvoY);
             /*
             A regra de pontuação é:
             O jogador ganha o jogo se conseguir chegar a 100 pontos,
             sendo a pontuação máxima.
-            Caso o jogador acerte em cima do alvo ele já tenha 100 
-            pontos e jogo termina.
+            Caso o jogador acerte em cima do alvo ele ganha 100 
+            pontos e o jogo termina.
             
             Caso o jogador acerte uma distância 5% do “campo de tiro” 
             entre seu tiro e o alvo ele ganha (100/ números de tiros-1) pontos.
@@ -94,28 +95,30 @@ class TiroAoAlvo {
             Caso o jogador acerte uma distância 80% do “campo de tiro” 
             entre seu tiro e o alvo ele ganha (100/ números de tiros-*4) pontos.
             
-            Assim o valor da pontuação varia e o tamanho do “campo de tiro” 
-            e o número de tiros e o tamanho do campo funcionam  para controlar 
-            o nível de dificuldade do jogo.
+            Assim, o valor da pontuação varia e o tamanho do “campo de tiro” 
+            e o número de tiros funcionam  para controlar o nível de
+            dificuldade do jogo.
             */
             if (d < (tamCampo * 5) / 100) {
-                pontosLocais += valorPontoMax / (niTiros - 1);
+                pontosTiro += valorPontoMax / (niTiros - 1);
             } else if (d < (tamCampo * 20) / 100) {
-                pontosLocais += valorPontoMax / (niTiros * 2);
+                pontosTiro += valorPontoMax / (niTiros * 2);
             } else if (d < (tamCampo * 50) / 100) {
-                pontosLocais += valorPontoMax / (niTiros * 3);
+                pontosTiro += valorPontoMax / (niTiros * 3);
             } else if (d < (tamCampo * 80) / 100) {
-                pontosLocais += valorPontoMax / (niTiros * 4);
+                pontosTiro += valorPontoMax / (niTiros * 4);
             }
         }
-       //arredondar nota
-        pontos += Math.round(pontosLocais);
+        //Arredonda a pontuação
+        pontosTiro = Math.round(pontosTiro);
+        pontos += pontosTiro;
     }
 
     private void FimDeJogo() {
         if (pontos >= valorPontoMax) {
             tiros = 0;
             pontos = 100;
+            System.out.println("===================================================");
             System.out.println("Você conseguiu chegar a "+pontos +" pontos faltando "+ 
                     (niTiros - idTiro + 1) + " tiros");
             System.out.println("VOCÊ GANHOU");
@@ -123,12 +126,15 @@ class TiroAoAlvo {
             System.out.println("===================================================");
         } else if (tiros > 1) {
             tiros--;
-            System.out.println("Seus pontos: " +  pontos);
+            System.out.println("Você fez... "+pontosTiro+" pontos. Sua parcial é de "+pontos+" pontos. ");
         } else {
             tiros--;
+            System.out.println("===================================================");
             System.out.println("Fim do Jogo.");
             System.out.println("Jogador " + nomeJogador + 
                     ", seu total foi de " + pontos + " pontos.");
+            System.out.println("===================================================");
+
         }
 
     }
@@ -140,8 +146,8 @@ class TiroAoAlvo {
         num = new Random();
         alvoY = -1 * tamCampo + num.nextInt(tamCampo+tamCampo)+1;
         /*
-        Comando usando durante o desenvolvimento para mostrar o alvo assim
-        que radomizado e retirado na versãofinal do jogo.*/
+        A linha de codigo usanda durante o desenvolvimento e para mostrar o
+        alvo assim que radomizado foi retirada na versãofinal do jogo foi essa:*/
         System.out.println(alvoX + " " + alvoY);
         
     }
